@@ -64,7 +64,7 @@ pipeline{
             }
 
             always {
-                archiveArtifacts("gatling-charts/results")
+                archiveArtifacts("${GATLING_RESULTS}/**/*")
             }
         }
     }
