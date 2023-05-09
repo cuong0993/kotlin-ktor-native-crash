@@ -1,0 +1,11 @@
+FROM debian:bullseye
+
+ADD sample /sample
+
+EXPOSE 8080
+RUN apt update && apt --assume-yes install curl libcurl4-openssl-dev default-jdk
+
+RUN cd /sample && ./gradlew clean build
+
+WORKDIR /sample
+ENTRYPOINT ./build/bin/native/releaseExecutable/KtorServer.kexe

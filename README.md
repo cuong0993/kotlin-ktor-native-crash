@@ -1,0 +1,2 @@
+Repository contains simple Ktor server (Kotlin Native) source code together with Gatling tests that are containeraized via Docker compose and deployed with Jenkins. 
+Environment created that way allows to reproduce the issue: https://youtrack.jetbrains.com/issue/KTOR-5822/free-invalid-pointer-crash-during-a-high-load
