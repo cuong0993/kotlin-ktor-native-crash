@@ -46,6 +46,9 @@ fun main(args: Array<String>) {
 }
 
 private fun getImageUrl(width: Int, height: Int, id: Int): String {
-    // return "https://picsum.photos/id/$id/$width/$height"
-    return "https://placeimg.com/$width/$height/any"
+    return if (Random.nextInt(0, 4) % 2 == 0) {
+        "https://picsum.photos/id/$id/$width/$height"
+    } else {
+        "https://placeimg.com/$width/$height/any"
+    }
 }
