@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+
 plugins {
     kotlin("jvm")
     kotlin("plugin.allopen")
@@ -16,6 +19,10 @@ gatling {
         // Enterprise Cloud (https://cloud.gatling.io/) configuration reference: https://gatling.io/docs/gatling/reference/current/extensions/gradle_plugin/#working-with-gatling-enterprise-cloud
         // Enterprise Self-Hosted configuration reference: https://gatling.io/docs/gatling/reference/current/extensions/gradle_plugin/#working-with-gatling-enterprise-self-hosted
     }
+}
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(11))
 }
 
 repositories {
