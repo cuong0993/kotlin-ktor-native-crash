@@ -1,11 +1,13 @@
-FROM debian:bullseye
+FROM gradle:latest AS cache
 
 ADD sample /sample
 
+RUN apt update && apt --assume-yes install curl libcurl4-openssl-dev
+
+RUN cd /sample && gradle clean build
+
+FROM debian:bookworm
 EXPOSE 8080
-RUN apt update && apt --assume-yes install curl libcurl4-openssl-dev default-jdk
-
-RUN cd /sample && ./gradlew clean build
-
-WORKDIR /sample
-ENTRYPOINT ./build/bin/native/releaseExecutable/KtorServer.kexe
+RUN apt update && apt --assume-yes install curl libcurl4-openssl-dev
+COPY --from=cache ./sample/build/bin/native/releaseExecutable/KtorServer.kexe ./KtorServer.kexe
+ENTRYPOINT ./KtorServer.kexe
